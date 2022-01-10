@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All messages</title>
+</head>
+<body>
+    <p><a href="/users">User List</a></p>
+
+    <form th:action="@{/logout}" th:method="POST">
+        <input type="submit" value="Sign Out"/>
+    </form>
+
+    <p>Create new message</p>
+    <form th:method="POST" th:action="@{/messages}" th:object="${message}">
+        <label for="text"> Text :</label>
+        <input type="text" th:field="*{text}" id="text" />
+
+        <label for="tag"> Tag :</label>
+        <input type="text" th:field="*{tag}" id="tag" />
+
+        <input type="submit" value="Create!"/>
+    </form>
+
+    <form th:method="GET" th:action="@{/messages/filter}">
+        <label for="filter"> Find by :</label>
+        <input type="text" id="filter" name="filter"/>
+        <input type="submit" value="Find">
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Text</th>
+                <th>Tag</th>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="message: ${messages}">
+                <td th:text="${message.getId()}" />
+                <td th:text="${message.getText()}" />
+                <td th:text="${message.getTag()}" />
+                <td th:text="${message.getUserName()}" />
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

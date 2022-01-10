@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Message</title>
+</head>
+
+<body>
+    <div th:object="${message}">
+        <p th:text="${message.get().getId()}">ID</p>
+        <p th:text="${message.get().getText()}">TEXT</p>
+        <p th:text="${message.get().getTag()}">TAG</p>
+    </div>
+</body>
+</html>
